@@ -13,6 +13,8 @@ class tApp:
         # Frame com barra de scroll
         self.frame = tk.Frame(self.root, bg="white")
         self.frame.pack(fill="both", expand=True)
+        self.frame2 = tk.Frame(self.root, bg="white")
+        self.frame2.pack(fill="x", expand=False)
 
         # Canvas para desenhar texto
         self.canvas = tk.Canvas(self.frame, bg="white", highlightthickness=0)
@@ -22,9 +24,9 @@ class tApp:
         self.scrollbar = tk.Scrollbar(self.frame, orient="vertical", command=self.canvas.yview)
         self.scrollbar.pack(side="right", fill="y")
         self.canvas.configure(yscrollcommand=self.scrollbar.set)
-        self.scrollbarx = tk.Scrollbar(self.frame, orient="horizontal", command=self.canvas.xview)
+        self.scrollbarx = tk.Scrollbar(self.frame2, orient="horizontal", command=self.canvas.xview)
         self.scrollbarx.pack(side="bottom", fill="x")
-        self.canvas.configure(xscrollcommand=self.scrollbarx.set)
+        self.canvas.configure(xscrollcommand=self.scrollbarx.set,height=35)
 
         # Fonte
         self.font = font.Font(family="Courier", size=16)
@@ -36,7 +38,7 @@ class tApp:
             y=y+22
         self.canvas.configure(scrollregion=self.canvas.bbox("all"))
         # Scroll automático para o fim
-        self.canvas.yview_moveto(1.0)
+        self.canvas.yview_moveto(0.0)
         self.canvas.xview_moveto(0.0)
 
 print("\033c\033[47;31m\ngive me a text to view ? \n")
